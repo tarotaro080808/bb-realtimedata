@@ -5,6 +5,12 @@ BitbankのAPIデータを基にデプスチャート、歩み値を表示
 XRP/JPYに対応しています。
 https://bb-realtimedata.firebaseapp.com/
 
+## Require
+- Node.js version 8.9 or above (8.11.0+ recommended)
+- Yarn
+- @vue/cli (`yarn global add @vue/cli`)
+
+
 ## Project setup
 必要な依存関係が不足している可能性があります。
 問題があればご連絡ください。
