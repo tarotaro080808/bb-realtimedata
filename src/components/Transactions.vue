@@ -16,7 +16,7 @@
           <td class="align-right">{{ item.amount }}</td>
         </tr>
       </tbody>
-    </table>    
+    </table>
   </div>
 </template>
 
@@ -32,19 +32,19 @@ export default {
   },
   filters: {
     // タイムフォーマット
-    time: function (value) {
-      return moment(value).format("HH:mm:ss")
-    },
+    time: function(value) {
+      return moment(value).format('HH:mm:ss')
+    }
   },
   methods: {
     // sell or buy 判定
-    isBuy: function (side) {
+    isBuy: function(side) {
       if (side === 'sell') {
         return false
       } else {
         return true
       }
     }
-  },
+  }
 }
 </script>

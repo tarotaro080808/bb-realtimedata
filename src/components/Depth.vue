@@ -2,40 +2,20 @@
   <div>デプスチャート
     <div class="settings">
       <p>自動更新タイミング</p>
-      <div class="form-checkbox form-checkbox-radio">
-        <label for="t0" class="form-checkbox-label">
-          <input id="t0" type="radio" class="form-checkbox-input" v-model="setting" value="5000">5秒
-          <span class="form-checkbox-sign"></span>
-        </label>
-      </div>
-      <div class="form-checkbox form-checkbox-radio">
-        <label for="t1" class="form-checkbox-label">
+      <div
+        v-for="settingTime in settingTimes"
+        :key="settingTime.id"
+        class="form-checkbox form-checkbox-radio"
+      >
+        <label :for="settingTime.id" class="form-checkbox-label">
           <input
-            id="t1"
+            :id="settingTime.id"
             type="radio"
             class="form-checkbox-input"
             v-model="setting"
-            value="10000"
-            checked
-          >10秒
-          <span class="form-checkbox-sign"></span>
-        </label>
-      </div>
-      <div class="form-checkbox form-checkbox-radio">
-        <label for="t2" class="form-checkbox-label">
-          <input id="t2" type="radio" class="form-checkbox-input" v-model="setting" value="30000">30秒
-          <span class="form-checkbox-sign"></span>
-        </label>
-      </div>
-      <div class="form-checkbox form-checkbox-radio">
-        <label for="t3" class="form-checkbox-label">
-          <input id="t3" type="radio" class="form-checkbox-input" v-model="setting" value="60000">1分
-          <span class="form-checkbox-sign"></span>
-        </label>
-      </div>
-      <div class="form-checkbox form-checkbox-radio">
-        <label for="t4" class="form-checkbox-label">
-          <input id="t4" type="radio" class="form-checkbox-input" v-model="setting" value="off">自動更新しない
+            :value="settingTime.value"
+          >
+          {{ settingTime.label }}
           <span class="form-checkbox-sign"></span>
         </label>
       </div>
@@ -51,13 +31,17 @@ import am4themes_dark from '@amcharts/amcharts4/themes/dark'
 am4core.useTheme(am4themes_dark)
 let chart = null
 let res = [400]
-let settingTimes = [5000, 10000, 30000, 60000]
-
 export default {
-  /* eslint-disable */
   data() {
     return {
-      setting: 10000
+      setting: 10000,
+      settingTimes: [
+        { id: 't0', label: '5秒', value: 5000 },
+        { id: 't1', label: '10秒', value: 10000 },
+        { id: 't2', label: '30秒', value: 30000 },
+        { id: 't3', label: '1分', value: 60000 },
+        { id: 't4', label: '自動更新しない', value: 'off' }
+      ]
     }
   },
   watch: {
@@ -66,8 +50,11 @@ export default {
         chart.dataSource.reloadFrequency = undefined
       } else {
         // Validation
-        if (settingTimes.includes(Number(val))) {
-          chart.dataSource.reloadFrequency = val
+        const target = this.settingTimes.some(
+          settingTime => settingTime.value === val
+        )
+        if (target) {
+          chart.dataSource.reloadFrequency = Number(val)
         }
       }
       chart.dataSource.load()
@@ -91,7 +78,7 @@ export default {
         }
       })
       if (desc) {
-        for (var i = list.length - 1; i >= 0; i--) {
+        for (i = list.length - 1; i >= 0; i--) {
           if (i < list.length - 1) {
             list[i].totalvolume = list[i + 1].totalvolume + list[i].volume
           } else {
@@ -104,7 +91,7 @@ export default {
           res.unshift(dp)
         }
       } else {
-        for (var i = 0; i < list.length; i++) {
+        for (i = 0; i < list.length; i++) {
           if (i > 0) {
             list[i].totalvolume = list[i - 1].totalvolume + list[i].volume
           } else {

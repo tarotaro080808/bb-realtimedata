@@ -33,10 +33,9 @@ export default {
     Depth
   },
   mounted: function() {
-    /* eslint-disable */
     const SUBSCRIBE_KEY = 'sub-c-e12e9174-dd60-11e6-806b-02ee2ddab7fe'
     const TRANSACTIONS_CHANNEL = 'transactions_xrp_jpy'
-    const DEPTH_CHANNEL = 'depth_xrp_jpy'
+    // const DEPTH_CHANNEL = 'depth_xrp_jpy'
     const pubnub = new PubNub({
       subscribeKey: SUBSCRIBE_KEY
     })
