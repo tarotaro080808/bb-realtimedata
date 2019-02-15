@@ -3,7 +3,7 @@
     <table>
       <tbody>
         <tr>
-          <th colspan="3">歩み値</th>
+          <th colspan="3"><p class="heading">歩み値</p></th>
         </tr>
         <tr>
           <th>時間</th>

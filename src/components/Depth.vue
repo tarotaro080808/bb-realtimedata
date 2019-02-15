@@ -1,5 +1,6 @@
 <template>
-  <div>デプスチャート
+  <div>
+    <p class="heading">デプスチャート</p>
     <div class="settings">
       <p>自動更新タイミング</p>
       <div
@@ -31,6 +32,7 @@ import am4themes_dark from '@amcharts/amcharts4/themes/dark'
 am4core.useTheme(am4themes_dark)
 let chart = null
 let res = [400]
+
 export default {
   data() {
     return {
@@ -107,7 +109,6 @@ export default {
     }
   },
   mounted() {
-    // eslint-disable-next-line
     chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
     chart.dataSource.url = 'https://public.bitbank.cc/xrp_jpy/depth'
     chart.dataSource.reloadFrequency = 10000
@@ -149,6 +150,7 @@ export default {
     series2.tooltipText =
       'Ask: [bold]{categoryX}[/]\nTotal volume: [bold]{valueY}[/]\nVolume: [bold]{asksvolume}[/]'
 
+    // ボリューム（現在未使用）
     // let series3 = chart.series.push(new am4charts.ColumnSeries());
     // series3.dataFields.categoryX = "value";
     // series3.dataFields.valueY = "bidsvolume";
@@ -195,6 +197,9 @@ export default {
   display: block;
   padding-left: 1.25rem;
   display: inline;
+}
+.form-checkbox:first-of-type {
+  padding-left: 0;
 }
 .form-checkbox-input {
   position: absolute;

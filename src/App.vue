@@ -106,8 +106,12 @@ a {
   font-size: 12px;
   color: #ffffff;
 }
+.heading {
+  font-weight: bold;
+  font-size: 1.15rem;
+}
 #app {
-  width: 700px;
+  width: 800px;
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
