@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@amcharts/amcharts4": "^4.1.6",
-    "babel-polyfill": "^6.26.0",
+    "@babel/polyfill": "^7.2.5",
     "firebase": "^5.5.9",
     "moment": "^2.22.2",
     "vue": "^2.5.17"
