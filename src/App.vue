@@ -10,6 +10,9 @@
       <depth/>
     </div>
     <div class="panel">
+      <sell-buy-ratio :latestItem="latestItem"/>
+    </div>
+    <div class="panel">
       <transactions :items="items"/>
     </div>
   </div>
@@ -19,18 +22,21 @@
 import PubNub from 'pubnub'
 import Transactions from '@/components/Transactions'
 import Depth from '@/components/Depth'
+import SellBuyRatio from '@/components/SellBuyRatio'
 
 export default {
   name: 'app',
   data: function() {
     return {
       // 配信データ格納用
-      items: []
+      items: [],
+      latestItem: {}
     }
   },
   components: {
     Transactions,
-    Depth
+    Depth,
+    SellBuyRatio
   },
   mounted: function() {
     const SUBSCRIBE_KEY = 'sub-c-e12e9174-dd60-11e6-806b-02ee2ddab7fe'
@@ -44,6 +50,7 @@ export default {
         // if (message.channel == DEPTH_CHANNEL) {
         // }
         if (message.channel == TRANSACTIONS_CHANNEL) {
+          this.latestItem = Object.assign({}, message.message.data.transactions[0])
           this.items.unshift(message.message.data.transactions[0])
           if (this.items.length > 100) {
             this.items.pop()
