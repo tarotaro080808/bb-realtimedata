@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="heading">売買ボリューム割合</p>
+    <p class="heading">取引ボリューム比率</p>
     <progress-bar :sellRatio="sell.ratio" :buyRatio="buy.ratio"/>
     <p class="reset-ratio align-right" @click="resetRatio">リセット</p>
   </div>
@@ -9,7 +9,7 @@
 <script>
 import ProgressBar from '@/components/atoms/ProgressBar'
 import { BigNumber } from 'bignumber.js'
-BigNumber.config({ DECIMAL_PLACES: 2 })
+BigNumber.config({ DECIMAL_PLACES: 4 })
 
 export default {
   props: {
