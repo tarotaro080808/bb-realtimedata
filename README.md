@@ -14,6 +14,7 @@ https://bb-realtimedata.firebaseapp.com/
 ## Project setup
 必要な依存関係が不足している可能性があります。
 問題があればご連絡ください。
+
 copy `.env.example` to `.env` then set gaid if you need google analytics.
 ```
 yarn install
